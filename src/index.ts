@@ -1,115 +1,127 @@
-import multiply, { multiplyByTwo as mBy2, HelloWold } from "./multiply";
+// import multiply, { multiplyByTwo as mBy2, HelloWold } from "./multiply";
 
-const a = 25;
-const b = 3;
+import { calculateTotalAmount } from "./lib/calculate-total-amount";
+import { Order } from "./lib/order";
+import { ShoppingCart } from "./lib/shopping-cart";
 
-console.log(`${a} * ${b} = ${multiply(a, b)}`);
-console.log(mBy2(a));
+// const a = 25;
+// const b = 3;
 
-enum Color {
-	Red = "r",
-	Green = "g",
-	Blue = "b",
-}
+// console.log(`${a} * ${b} = ${multiply(a, b)}`);
+// console.log(mBy2(a));
 
-let myFavColor: Color = Color.Blue;
+// enum Color {
+// 	Red = "r",
+// 	Green = "g",
+// 	Blue = "b",
+// }
 
-console.log(myFavColor);
-console.log(Color.Red, Color.Green, Color.Blue);
-console.log(Color["Blue"]);
+// let myFavColor: Color = Color.Blue;
 
-class Robot {
-	//_name: string;
-	_color!: string;
-	static availableColors: string[] = ["Red", "Green", "Blue"];
-	static isColorAvailable = (color: string) =>
-		Robot.availableColors.includes(color);
+// console.log(myFavColor);
+// console.log(Color.Red, Color.Green, Color.Blue);
+// console.log(Color["Blue"]);
 
-	constructor(protected _name: string) {
-		//this.name = name;
-	}
+// class Robot {
+// 	//_name: string;
+// 	_color!: string;
+// 	static availableColors: string[] = ["Red", "Green", "Blue"];
+// 	static isColorAvailable = (color: string) =>
+// 		Robot.availableColors.includes(color);
 
-	askName() {
-		console.log("My name is " + this.name);
-	}
+// 	constructor(protected _name: string) {
+// 		//this.name = name;
+// 	}
 
-	move(distance: number) {
-		console.log(this.name + " moved " + distance + " meters");
-	}
+// 	askName() {
+// 		console.log("My name is " + this.name);
+// 	}
 
-	set name(value: string) {
-		this._name = "PREFIX_" + value;
-	}
+// 	move(distance: number) {
+// 		console.log(this.name + " moved " + distance + " meters");
+// 	}
 
-	get name() {
-		return this._name + "_SUFFIX";
-	}
+// 	set name(value: string) {
+// 		this._name = "PREFIX_" + value;
+// 	}
 
-	set color(color: string) {
-		if (!Robot.isColorAvailable(color)) {
-			throw new Error("Color " + color + " is not available");
-		}
-		this._color = color;
-	}
-}
+// 	get name() {
+// 		return this._name + "_SUFFIX";
+// 	}
 
-class FlyingRobot extends Robot {
-	jetPackSize: number;
-	constructor(name: string, jetPackSize: number) {
-		super(name);
-		this.jetPackSize = jetPackSize;
-	}
+// 	set color(color: string) {
+// 		if (!Robot.isColorAvailable(color)) {
+// 			throw new Error("Color " + color + " is not available");
+// 		}
+// 		this._color = color;
+// 	}
+// }
 
-	move(distace: number) {
-		console.log(this.name + " is flying");
-		super.move(distace);
-	}
-}
+// class FlyingRobot extends Robot {
+// 	jetPackSize: number;
+// 	constructor(name: string, jetPackSize: number) {
+// 		super(name);
+// 		this.jetPackSize = jetPackSize;
+// 	}
 
-const robot = new Robot("Axel");
+// 	move(distace: number) {
+// 		console.log(this.name + " is flying");
+// 		super.move(distace);
+// 	}
+// }
 
-robot.askName();
+// const robot = new Robot("Axel");
 
-const flyingRobot = new FlyingRobot("Francisco Axel", 5);
+// robot.askName();
 
-flyingRobot.move(500);
+// const flyingRobot = new FlyingRobot("Francisco Axel", 5);
 
-console.log("Flying robot's jetpack size is " + flyingRobot.jetPackSize);
+// flyingRobot.move(500);
 
-flyingRobot.name = "Flying robot Axel";
+// console.log("Flying robot's jetpack size is " + flyingRobot.jetPackSize);
 
-console.log("My name is " + flyingRobot.name);
+// flyingRobot.name = "Flying robot Axel";
 
-class Robotin {
-	#name: string;
-	private somePrivateField: string = "Private!!";
+// console.log("My name is " + flyingRobot.name);
 
-	constructor(name: string) {
-		this.#name = name;
-	}
+// class Robotin {
+// 	#name: string;
+// 	private somePrivateField: string = "Private!!";
 
-	getName() {
-		return this.#name;
-	}
-}
+// 	constructor(name: string) {
+// 		this.#name = name;
+// 	}
 
-class AdvancedRobot extends Robotin {
-	#name: string;
-	private somePrivateField: string = "Overridden Private!!";
+// 	getName() {
+// 		return this.#name;
+// 	}
+// }
 
-	constructor(name: string) {
-		super(name);
-		this.#name = "Advanced " + name;
-	}
+// class AdvancedRobot extends Robotin {
+// 	#name: string;
+// 	private somePrivateField: string = "Overridden Private!!";
 
-	getAdvancedRobotName(): string {
-		return this.#name;
-	}
-}
+// 	constructor(name: string) {
+// 		super(name);
+// 		this.#name = "Advanced " + name;
+// 	}
 
-const robotin = new AdvancedRobot("Axel");
+// 	getAdvancedRobotName(): string {
+// 		return this.#name;
+// 	}
+// }
 
-console.log("Parent name: " + robotin.getName());
-console.log("subclass name: " + robotin.getAdvancedRobotName());
+// const robotin = new AdvancedRobot("Axel");
 
-console.log("private " + robotin.somePrivateField);
+// console.log("Parent name: " + robotin.getName());
+// console.log("subclass name: " + robotin.getAdvancedRobotName());
+
+// console.log("private " + robotin.somePrivateField);
+
+////////////////////////////////////////////////////////////////
+const cart = new ShoppingCart();
+
+console.log("The cart's total is " + calculateTotalAmount(cart));
+
+const order = new Order();
+console.log("The order's total is " + calculateTotalAmount(order));
