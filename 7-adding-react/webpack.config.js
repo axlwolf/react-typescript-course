@@ -22,6 +22,24 @@ module.exports = {
 				],
 				exclude: /node_modules/,
 			},
+			{
+				test: /\.svg$/,
+				loader: "@svgr/webpack",
+				options: {
+					svgoConfig: {
+						plugins: [
+							{
+								name: "preset-default",
+								params: {
+									overrides: {
+										removeViewBox: false,
+									},
+								},
+							},
+						],
+					},
+				},
+			},
 		],
 	},
 	plugins: [
